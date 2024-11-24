@@ -4,12 +4,12 @@ import { navLinks } from "../constant";
 
 const NavMobile = () => {
   const [open, setOpen] = useState(false);
-  console.log("navLinks", navLinks);
+
   return (
     <div>
       <div
         className="hidden max-lg:block cursor-pointer"
-        onClick={() => setOpen(true)}
+        onClick={()=>setOpen(true)}
       >
         <img src={hamburger} alt="Hamburger" width={25} height={25} />
       </div>
@@ -35,7 +35,12 @@ const NavMobile = () => {
             <div className="absolute mt-24 right-0 mx-4">
               <ul className="flex flex-col items-end gap-12 ">
                 {navLinks.map((item) => (
-                  <li key={item.label}>
+                  <li
+                    key={item.label}
+                    onClick={() => {
+                      setTimeout(()=>setOpen(false), 300);
+                    }}
+                  >
                     <a
                       href={item.href}
                       className="font-montserrat leading-normal text-xl text-gray-700 hover:text-slate-400 cursor-pointer"
